@@ -12,14 +12,10 @@ public class H {
     public static final String GOOGLEURL = "https://www.google.co.il/";
 
     public static final String PROJECTFOLDERPATH = "C:\\Users\\Asus-pc\\Desktop\\ProjectFolder\\";
+
     public static final String JPG = ".jpg";
 
     public static final String TXT = ".txt";
-
-
-
-
-
 
 
 
@@ -28,6 +24,7 @@ public class H {
         System.setProperty("webdriver.chrome.driver","res\\chromedriver.exe");
         return new ChromeDriver();
     }
+
 
     public static void screenshot(String pictureName, WebDriver d) throws IOException {
         File file = ((TakesScreenshot)d).getScreenshotAs(OutputType.FILE);
