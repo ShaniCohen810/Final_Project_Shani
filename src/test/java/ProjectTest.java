@@ -75,8 +75,11 @@ public class ProjectTest {
         H.screenshot("Penguins evolution screenshot", driver);
 
         jse.executeScript(JavascriptHelper.SCROLLTOTHEEND);
-        Thread.sleep(2000);
         H.screenshot("The end of the page", driver);
+
+        jse.executeScript("alert('The end of the test!')");
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
 
         driver.quit();
     }
