@@ -2,6 +2,8 @@ public class WikiHelper {
 
     public static final String PENGUINURL = "https://en.wikipedia.org/wiki/Penguin";
 
+    public static final String PENGUINTITLEXPATH = "//*[@id=\"firstHeading\"]/span";
+
     public static final String EVOLUTIONID = "Evolution";
 
     public static final String SEARCHFIELDID = "searchInput";

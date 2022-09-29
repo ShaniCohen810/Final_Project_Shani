@@ -1,5 +1,6 @@
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,7 +32,7 @@ public class ProjectTest {
     }
 
     @Test
-    void testTwo() {
+    void testTwo() throws InterruptedException {
         WebDriver driver = H.setupDriver();
         driver.get(H.GOOGLEURL);
         String googleWindow = driver.getWindowHandle();
@@ -45,13 +46,6 @@ public class ProjectTest {
         driver.switchTo().newWindow(WindowType.TAB);
         driver.get(H.GOOGLEURL);
         driver.switchTo().window(cureTab);
-        driver.quit();
-    }
-
-    @Test
-    void testThree() throws IOException, InterruptedException {
-        WebDriver driver = H.setupDriver();
-        driver.get(WikiHelper.PENGUINURL);
 
         driver.manage().window().fullscreen();
         Thread.sleep(2000);
@@ -59,6 +53,21 @@ public class ProjectTest {
         Thread.sleep(2000);
         driver.manage().window().maximize();
         Thread.sleep(2000);
+
+        driver.quit();
+    }
+
+    @Test
+    void testThree() throws IOException, InterruptedException {
+        WebDriver driver = H.setupDriver();
+        driver.get(WikiHelper.PENGUINURL);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        Actions actions = new Actions(driver);
+        WebElement doubleClick =
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(WikiHelper.PENGUINTITLEXPATH)));
+        actions.doubleClick(doubleClick).perform();
+        H.screenshot("Double click screenshot", driver);
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         WebElement evolution = driver.findElement(By.id(WikiHelper.EVOLUTIONID));
