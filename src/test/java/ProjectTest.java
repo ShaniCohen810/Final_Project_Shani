@@ -77,7 +77,7 @@ public class ProjectTest {
         jse.executeScript(JavascriptHelper.SCROLLTOTHEEND);
         H.screenshot("The end of the page", driver);
 
-        jse.executeScript("alert('The end of the test!')");
+        jse.executeScript(JavascriptHelper.alert("The end of the test!"));
         Thread.sleep(2000);
         driver.switchTo().alert().accept();
 
